@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 //import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tecsup.petclinic.domain.Pet;
+import com.tecsup.petclinic.domain.PetDTO;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.service.PetService;
 
@@ -27,7 +28,7 @@ public class PetController {
 
 	@Autowired
 	private PetService service;
-
+	 
 	/**
 	 * 
 	 * @return
@@ -51,7 +52,18 @@ public class PetController {
 	Pet create(@RequestBody Pet newPet) {
 		return service.create(newPet);
 	}
-
+	/*
+	Pet create(@RequestBody PetDTO newPet) {
+		Pet pet = new Pet();
+		pet.setName(newPet.getName());
+		pet.setOwnerId(newPet.getOwnerId());
+		pet.setTypeId(newPet.getTypeId());
+		pet.setBirthDate(newPet.getBirthDate());
+		return service.create(pet);
+	}*/
+	
+	
+	
 	/**
 	 * Find by id
 	 * 
@@ -76,7 +88,7 @@ public class PetController {
 	 * @return
 	 */
 	@PutMapping("/pets/{id}")
-	Pet saveOrUpdate(@RequestBody Pet newPet, @PathVariable Long id) {
+	Pet saveOrUpdate(@RequestBody PetDTO newPet, @PathVariable Long id) {
 		Pet pet = null;
 		try {
 			pet = service.findById(id);
@@ -85,7 +97,7 @@ public class PetController {
 			pet.setTypeId(newPet.getTypeId());
 			service.update(pet);
 		} catch (PetNotFoundException e) {
-			pet = service.create(newPet);
+			pet = service.create(pet);
 		}
 		return pet;
 	}

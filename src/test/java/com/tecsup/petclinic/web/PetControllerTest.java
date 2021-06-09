@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
-import com.tecsup.petclinic.domain.Pet;
+import com.tecsup.petclinic.domain.PetDTO;
 /**
  * 
  */
@@ -100,7 +100,7 @@ public class PetControllerTest {
 		int OWNER_ID = 1;
 		Date DATE = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-20");
 		
-		Pet newPet = new Pet(NAME_PET, TYPE_ID, OWNER_ID, DATE);
+		PetDTO newPet = new PetDTO(NAME_PET, TYPE_ID, OWNER_ID, DATE);
 	
 	    mockMvc.perform(post("/pets")
 	            .content(om.writeValueAsString(newPet))
@@ -129,7 +129,7 @@ public class PetControllerTest {
 		int OWNER_ID = 1;
 		Date DATE = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-20");
 		
-		Pet newPet = new Pet(NAME_PET, TYPE_ID, OWNER_ID, DATE);
+		PetDTO newPet = new PetDTO(NAME_PET, TYPE_ID, OWNER_ID, DATE);
 		
 		ResultActions mvcActions = mockMvc.perform(post("/pets")
 	            .content(om.writeValueAsString(newPet))
