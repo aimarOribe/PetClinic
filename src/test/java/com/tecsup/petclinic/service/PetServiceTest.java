@@ -1,18 +1,14 @@
 package com.tecsup.petclinic.service;
 
-
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.util.List;
-
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import com.tecsup.petclinic.domain.Pet;
 import com.tecsup.petclinic.exception.PetNotFoundException;
 
@@ -50,7 +46,7 @@ public class PetServiceTest {
 	/**
 	 * 
 	 */
-	@Test
+	
 	public void testFindPetByName() {
 
 		String FIND_NAME = "Leo";
@@ -64,7 +60,7 @@ public class PetServiceTest {
 	/**
 	 * 
 	 */
-	@Test
+	
 	public void testFindPetByTypeId() {
 
 		int TYPE_ID = 5;
@@ -78,7 +74,7 @@ public class PetServiceTest {
 	/**
 	 * 
 	 */
-	@Test
+	
 	public void testFindPetByOwnerId() {
 
 		int OWNER_ID = 10;
@@ -96,7 +92,7 @@ public class PetServiceTest {
 	 *  entity this annotation :
 	 *  	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	 */
-	@Test
+	
 	public void testCreatePet() {
 
 		String PET_NAME = "Ponky";
@@ -104,7 +100,9 @@ public class PetServiceTest {
 		int TYPE_ID = 1;
 
 		Pet pet = new Pet(PET_NAME, 1, 1);
+		
 		pet = petService.create(pet);
+		
 		logger.info("" + pet);
 
 		assertThat(pet.getId(), notNullValue());
@@ -117,7 +115,7 @@ public class PetServiceTest {
 	/**
 	 * 
 	 */
-	@Test
+	
 	public void testUpdatePet() {
 
 		String PET_NAME = "Bear";
@@ -157,7 +155,7 @@ public class PetServiceTest {
 	/**
 	 * 
 	 */
-	@Test
+	
 	public void testDeletePet() {
 
 		String PET_NAME = "Bird";
