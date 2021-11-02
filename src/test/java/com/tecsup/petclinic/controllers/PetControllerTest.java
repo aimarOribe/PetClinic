@@ -1,6 +1,8 @@
 package com.tecsup.petclinic.controllers;
 
 import static org.hamcrest.CoreMatchers.is;
+//import static org.hamcrest.Matchers.hasSize;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -33,25 +35,28 @@ import com.tecsup.petclinic.dto.PetDTO;
 @SpringBootTest
 public class PetControllerTest {
 
-	private static final Logger logger = LoggerFactory.getLogger(PetControllerTest.class);
+	private static final Logger logger 
+			= LoggerFactory.getLogger(PetControllerTest.class);
 
     private static final ObjectMapper om = new ObjectMapper();
     
 	@Autowired
 	private MockMvc mockMvc;
-
 	
 	@Test
 	public void testGetPets() throws Exception {
 
-		//int NRO_RECORD = 73;
-		int ID_FIRST_RECORD = 1;
+		//int SIZE = 216;
+		int ID_FIRST = 1;
+		//int ID_LAST = 332;  
 
 		this.mockMvc.perform(get("/pets"))
-					.andExpect(status().isOk())
+					.andExpect(status().isOk()) // HTTP 200
 					.andExpect(content().contentType(MediaType.APPLICATION_JSON))
-		//		    .andExpect(jsonPath("$", hasSize(NRO_RECORD)))
-					.andExpect(jsonPath("$[0].id", is(ID_FIRST_RECORD)));
+								    // ACTUAL      EXPECTED 
+					//.andExpect(jsonPath("$", hasSize(SIZE)))
+					.andExpect(jsonPath("$[0].id", is(ID_FIRST)));
+					//.andExpect(jsonPath("$[212].id", is(ID_LAST)));
 	}
 	
 
