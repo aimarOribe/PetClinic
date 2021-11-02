@@ -1,4 +1,4 @@
-package com.tecsup.petclinic.web;
+package com.tecsup.petclinic.controllers;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
@@ -23,7 +23,7 @@ import org.springframework.test.web.servlet.ResultActions;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jayway.jsonpath.JsonPath;
-import com.tecsup.petclinic.domain.PetDTO;
+import com.tecsup.petclinic.dto.PetDTO;
 /**
  * 
  */
