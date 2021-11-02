@@ -13,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,6 +32,8 @@ import com.tecsup.petclinic.dto.PetDTO;
 @AutoConfigureMockMvc
 @SpringBootTest
 public class PetControllerTest {
+
+	private static final Logger logger = LoggerFactory.getLogger(PetControllerTest.class);
 
     private static final ObjectMapper om = new ObjectMapper();
     
@@ -61,7 +65,8 @@ public class PetControllerTest {
 		String NAME_PET = "Leo";
 		int TYPE_ID = 1;
 		int OWNER_ID = 1;
-		Date DATE = new SimpleDateFormat("yyyy-MM-dd").parse("2000-09-07");
+		String DATE_REF = "2000-09-07";
+		//Date DATE = new SimpleDateFormat("yyyy-MM-dd").parse(DATE_REF);
 
 		mockMvc.perform(get("/pets/1"))  // Object must be BASIL 
 				.andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -72,7 +77,7 @@ public class PetControllerTest {
 				.andExpect(jsonPath("$.typeId", is(TYPE_ID)))
 				.andExpect(jsonPath("$.ownerId", is(OWNER_ID)))
 				//.andExpect(jsonPath("$.birthDate", is("2000-09-07")));
-				.andExpect(jsonPath("$.birthDate", is(new SimpleDateFormat("yyyy-MM-dd").format(DATE))));
+				.andExpect(jsonPath("$.birthDate", is(DATE_REF)));
 
 	}
 
@@ -95,13 +100,16 @@ public class PetControllerTest {
 	@Test
     public void testCreatePet() throws Exception {
 		
-    	String NAME_PET = "Beethoven";
+    	String NAME_PET = "BeethovenX";
 		int TYPE_ID = 1;
 		int OWNER_ID = 1;
-		Date DATE = new SimpleDateFormat("yyyy-MM-dd").parse("2020-05-20");
+		String DATE_REF = "2021-10-03";
+		Date DATE = new SimpleDateFormat("yyyy-MM-dd").parse(DATE_REF);
 		
 		PetDTO newPet = new PetDTO(NAME_PET, TYPE_ID, OWNER_ID, DATE);
-	
+	    
+		logger.info(om.writeValueAsString(newPet));
+	    
 	    mockMvc.perform(post("/pets")
 	            .content(om.writeValueAsString(newPet))
 	            .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON))
@@ -111,7 +119,7 @@ public class PetControllerTest {
 	            .andExpect(jsonPath("$.name", is(NAME_PET)))
 	            .andExpect(jsonPath("$.typeId", is(TYPE_ID)))
 	            .andExpect(jsonPath("$.ownerId", is(OWNER_ID)))
-	    		.andExpect(jsonPath("$.birthDate", is(new SimpleDateFormat("yyyy-MM-dd").format(DATE))));
+	    		.andExpect(jsonPath("$.birthDate", is(DATE_REF)));
     
 	}
     
