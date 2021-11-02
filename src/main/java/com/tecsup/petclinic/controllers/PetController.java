@@ -46,12 +46,20 @@ public class PetController {
 	 * @param newPet
 	 * @return
 	 */
+	/*
 	@PostMapping("/pets")
 	@ResponseStatus(HttpStatus.CREATED)
 	Pet create(@RequestBody Pet newPet) {
 		return service.create(newPet);
-	}
-	/*
+	}*/
+	
+	/**
+	 *  Create Pet
+	 * @param newPet
+	 * @return
+	 */
+	@PostMapping("/pets")
+	@ResponseStatus(HttpStatus.CREATED)
 	Pet create(@RequestBody PetDTO newPet) {
 		Pet pet = new Pet();
 		pet.setName(newPet.getName());
@@ -59,7 +67,7 @@ public class PetController {
 		pet.setTypeId(newPet.getTypeId());
 		pet.setBirthDate(newPet.getBirthDate());
 		return service.create(pet);
-	}*/
+	}
 	
 	
 	
