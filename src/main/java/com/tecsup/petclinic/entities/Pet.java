@@ -30,7 +30,6 @@ public class Pet {
 	private int ownerId;
 	
 	@Column(name = "birth_date")
-	
 	//@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@JsonFormat(pattern = "yyyy-MM-dd",  timezone = "GMT+8")
 	private Date birthDate;
