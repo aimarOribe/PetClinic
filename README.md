@@ -8,5 +8,6 @@
 
 ## v3.0.0 --> Version with continuous integration 
 
-### - mvn test -P dev  --> aplication-dev.properties  
-### - mvn test -P prod --> aplication-prod.properties  
+### - mvn test -P dev  --> aplication-dev.properties 
+### - mvn test -P test --> aplication-test.properties
+### - mvn test -P prod --> aplication-prod.properties
